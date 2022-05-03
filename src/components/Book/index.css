@@ -1,0 +1,60 @@
+.card {
+    box-sizing: border-box;
+    border-radius: 2px;
+    box-shadow: 0 0 5px rgba(169, 169, 169, 0.8);
+}
+
+.display-img {
+    display: block;
+    height: 65%;
+    width: 100%;
+}
+
+.description {
+    box-sizing: border-box;
+    height: 35%;
+    padding: 15px;
+    border-top: 1px solid rgba(169, 169, 169, 0.5)
+}
+
+.description>.title {
+    height: 65%;
+}
+.description a{
+    letter-spacing: 2px;
+    text-decoration: none;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+.price{
+    padding-top: 10px;
+}
+
+.price>span{
+    float:left;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+.price>button{
+    float:right;
+    margin-right: 10px;
+    display: block;
+    height: 30px;
+    width: 70px;
+    font-size: 16px;
+    background-color: rgba(0,0,255,0.5);
+    border: none;
+    border-radius: 3px;
+    color:white;
+    font-weight: bold;
+    /* position: relative; */
+}
+
+.price>button>svg{
+    margin-right: 3px;
+    position: relative;
+    top:2px;
+}
