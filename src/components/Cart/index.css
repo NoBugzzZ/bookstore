@@ -1,0 +1,28 @@
+.items{
+  height: calc(70%);
+  overflow-y: scroll;
+}
+
+.p{
+  margin: 0;
+  line-height: 1.5em;
+  font-size: 18px;
+}
+.p::after{
+  content: '';
+  display: block;
+  clear: both;
+}
+.span{
+  padding: 0;
+  display: block;
+}
+.bold-span{
+  font-weight: bold;
+}
+.left{
+  float: left;
+}
+.right{
+  float: right;
+}

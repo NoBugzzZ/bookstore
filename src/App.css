@@ -1,0 +1,20 @@
+.App{
+  width: 100vw;
+  height: 97vh;
+}
+
+.left{
+  box-sizing: border-box;
+  width: 59%;
+  height: 100%;
+  float: left;
+  padding: 10px;
+}
+
+.right{
+  box-sizing: border-box;
+  width: 39%;
+  height: 100%;
+  float: right;
+  padding: 10px;
+}

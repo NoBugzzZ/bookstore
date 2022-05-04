@@ -1,7 +1,6 @@
 import './index.css'
 
 const WindowDisplay=({ children, style }) => {
-    console.log(children)
     return(
     <div
         className="paper"

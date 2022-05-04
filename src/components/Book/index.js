@@ -1,12 +1,8 @@
 import './index.css'
+import Card from '../Card';
 
 const Book = ({ image, name, price, style }) => (
-    <div
-        className="card"
-        style={{
-            ...style
-        }}
-    >
+    <Card>
         <img
             src={image}
             alt={name}
@@ -33,7 +29,7 @@ const Book = ({ image, name, price, style }) => (
         </div>
 
 
-    </div>
+        </Card>
 )
 
 export default Book;
