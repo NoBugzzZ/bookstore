@@ -1,22 +1,52 @@
 import { useState, useEffect } from "react";
 import { WindowDisplay, Book, Cart, Item } from "./components";
 import './App.css'
-import { getCart, getProducts } from "./requests";
+import { getProducts } from "./requests";
 
 function App() {
 
-  const [items, setItems] = useState([])
+  // const [items, setItems] = useState([])
   const [products, setProducts] = useState([])
+  const [productsToCart, setProductsToCart] = useState([])
 
   useEffect(() => {
-    getCart(0).then(res => {
-      console.log(res)
-      setItems(res?.items||[]);
-    });
+    // getCart(0).then(res => {
+    //   setItems(res?.items || []);
+    // });
     getProducts().then(res => {
       setProducts(res)
     })
   }, [])
+
+  function handleAddBtn(product) {
+    return () => {
+      setProductsToCart(prev => {
+        const findIndex = prev.findIndex(e => e.product.id === product.id);
+        const newData = [...prev];
+        if (findIndex > -1) {
+          newData.splice(findIndex, 1, {
+            amount: prev[findIndex].amount + 1,
+            product
+          })
+        } else {
+          newData.push({
+            amount: 1,
+            product
+          })
+        }
+        return newData
+      })
+    }
+  }
+
+  function handleCancelBtn() {
+    setProductsToCart([])
+  }
+
+  function handleChargeBtn(charge) {
+    alert(charge)
+    setProductsToCart([])
+  }
 
   return (
     <div className="App">
@@ -31,127 +61,31 @@ function App() {
                 image={product.image}
                 name={product.name}
                 price={product.price.toFixed(3)}
-                style={{
-                  height: "400px",
-                  width: "300px"
-                }}
+                handleAddBtn={handleAddBtn(product)}
               />
             )
           })}
-          <Book
-            image="https://www.kncat.com/images/cover/202009/15990112283732519.jpg"
-            name="java编程思想,Java学习必读经典,殿堂级著作！赢得了全球程序员的广泛赞誉 100册以上团购优惠联系电话4006186622"
-            price={10.99}
-            style={{
-              height: "400px",
-              width: "300px"
-            }}
-          />
-          <Book
-            image="https://www.kncat.com/images/cover/202009/15990112283732519.jpg"
-            name="java编程思想,Java学习必读经典,殿堂级著作！赢得了全球程序员的广泛赞誉 100册以上团购优惠联系电话4006186622"
-            price={10.99}
-            style={{
-              height: "400px",
-              width: "300px"
-            }}
-          /><Book
-            image="https://www.kncat.com/images/cover/202009/15990112283732519.jpg"
-            name="java编程思想,Java学习必读经典,殿堂级著作！赢得了全球程序员的广泛赞誉 100册以上团购优惠联系电话4006186622"
-            price={10.99}
-            style={{
-              height: "400px",
-              width: "300px"
-            }}
-          /><Book
-            image="https://www.kncat.com/images/cover/202009/15990112283732519.jpg"
-            name="java编程思想,Java学习必读经典,殿堂级著作！赢得了全球程序员的广泛赞誉 100册以上团购优惠联系电话4006186622"
-            price={10.99}
-            style={{
-              height: "400px",
-              width: "300px"
-            }}
-          /><Book
-            image="https://www.kncat.com/images/cover/202009/15990112283732519.jpg"
-            name="java编程思想,Java学习必读经典,殿堂级著作！赢得了全球程序员的广泛赞誉 100册以上团购优惠联系电话4006186622"
-            price={10.99}
-            style={{
-              height: "400px",
-              width: "300px"
-            }}
-          /><Book
-            image="https://www.kncat.com/images/cover/202009/15990112283732519.jpg"
-            name="java编程思想,Java学习必读经典,殿堂级著作！赢得了全球程序员的广泛赞誉 100册以上团购优惠联系电话4006186622"
-            price={10.99}
-            style={{
-              height: "400px",
-              width: "300px"
-            }}
-          /><Book
-            image="https://www.kncat.com/images/cover/202009/15990112283732519.jpg"
-            name="java编程思想,Java学习必读经典,殿堂级著作！赢得了全球程序员的广泛赞誉 100册以上团购优惠联系电话4006186622"
-            price={10.99}
-            style={{
-              height: "400px",
-              width: "300px"
-            }}
-          />
         </WindowDisplay>
       </div>
       <div
         className="right"
       >
-        <Cart>
-          {items.map(item => {
-            const { product } = item;
+        <Cart
+          handleCancelBtn={handleCancelBtn}
+          handleChargeBtn={handleChargeBtn}
+          products={productsToCart}
+        >
+          {productsToCart.map(item => {
+            const { product, amount } = item;
             return (
               <Item
                 key={product.name}
                 image={product.image}
                 name={product.name}
+                amount={amount}
               ></Item>
             )
           })}
-          <Item
-            image="https://www.kncat.com/images/cover/202009/15990112283732519.jpg"
-            name="java编程思想,Java学习必读经典,殿堂级著作！赢得了全球程序员的广泛赞誉 100册以上团购优惠联系电话4006186622"
-          >
-          </Item>
-          <Item
-            image="https://www.kncat.com/images/cover/202009/15990112283732519.jpg"
-            name="java编程思想,Java学习必读经典,殿堂级著作！赢得了全球程序员的广泛赞誉 100册以上团购优惠联系电话4006186622"
-          >
-          </Item>
-          <Item
-            image="https://www.kncat.com/images/cover/202009/15990112283732519.jpg"
-            name="java编程思想,Java学习必读经典,殿堂级著作！赢得了全球程序员的广泛赞誉 100册以上团购优惠联系电话4006186622"
-          >
-          </Item>
-          <Item
-            image="https://www.kncat.com/images/cover/202009/15990112283732519.jpg"
-            name="java编程思想,Java学习必读经典,殿堂级著作！赢得了全球程序员的广泛赞誉 100册以上团购优惠联系电话4006186622"
-          >
-          </Item>
-          <Item
-            image="https://www.kncat.com/images/cover/202009/15990112283732519.jpg"
-            name="java编程思想,Java学习必读经典,殿堂级著作！赢得了全球程序员的广泛赞誉 100册以上团购优惠联系电话4006186622"
-          >
-          </Item>
-          <Item
-            image="https://www.kncat.com/images/cover/202009/15990112283732519.jpg"
-            name="java编程思想,Java学习必读经典,殿堂级著作！赢得了全球程序员的广泛赞誉 100册以上团购优惠联系电话4006186622"
-          >
-          </Item>
-          <Item
-            image="https://www.kncat.com/images/cover/202009/15990112283732519.jpg"
-            name="java编程思想,Java学习必读经典,殿堂级著作！赢得了全球程序员的广泛赞誉 100册以上团购优惠联系电话4006186622"
-          >
-          </Item>
-          <Item
-            image="https://www.kncat.com/images/cover/202009/15990112283732519.jpg"
-            name="java编程思想,Java学习必读经典,殿堂级著作！赢得了全球程序员的广泛赞誉 100册以上团购优惠联系电话4006186622"
-          >
-          </Item>
         </Cart>
       </div>
     </div>

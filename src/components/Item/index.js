@@ -1,6 +1,6 @@
 import './index.css'
 
-const Item = ({ image, name }) => (
+const Item = ({ image, name, amount }) => (
   <div
     className='item'
   >
@@ -13,11 +13,24 @@ const Item = ({ image, name }) => (
         float: "left"
       }}
     />
-    <span
-    className='title'
+    <div
+      className='item-title-wrap'
     >
-      {name}
-    </span>
+      <span
+        className='item-title'
+      >
+        {name}
+      </span>
+    </div>
+    <div
+      className='amount'
+    >
+      <span
+      >
+        {amount}
+      </span>
+    </div>
+
   </div>
 )
 
