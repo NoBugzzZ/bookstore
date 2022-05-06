@@ -8,14 +8,14 @@ const WindowDisplay = ({
 }) => {
     return (
         <Card
-            height="100%"
-            width="100%"
+            height={height}
+            width={width}
         >
             <div
                 className="paper"
                 style={{
-                    height,
-                    width,
+                    height:"100%",
+                    width:"100%",
                 }}
             >
                 {children.map(child => {

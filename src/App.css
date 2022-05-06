@@ -1,6 +1,7 @@
 .App{
   width: 100vw;
-  height: 97vh;
+  height: 100vh;
+  box-sizing: border-box;
 }
 
 .left{
