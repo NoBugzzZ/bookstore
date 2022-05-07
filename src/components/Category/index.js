@@ -8,8 +8,12 @@ const Category = ({
     categories = []
 }) => {
     const [selected, setSelected] = useState(defaultSelected)
-    return (
 
+    const handleClick=({label,value})=>{
+        onSelect(value);
+        setSelected(label)
+    }
+    return (
         <div
             className="category"
         >
@@ -21,9 +25,8 @@ const Category = ({
                         <Label
                             label={label}
                             value={value}
-                            handleClick={onSelect}
+                            handleClick={handleClick}
                             selected={label===selected}
-                            setSelected={setSelected}
                         />
                     </div>
                 )

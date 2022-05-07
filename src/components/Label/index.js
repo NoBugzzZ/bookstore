@@ -5,14 +5,12 @@ const Label = ({
     value,
     handleClick,
     selected,
-    setSelected,
 }) => (
     <div
-        className={`label ${selected?"label-onselected":""}`}
+        className={`label ${selected ? "label-onselected" : ""}`}
         onClick={() => {
-            if(!selected){
-                setSelected(label)
-                handleClick(value);
+            if (!selected) {
+                handleClick({ label, value });
             }
         }}
     >

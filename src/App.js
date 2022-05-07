@@ -57,19 +57,24 @@ function App() {
           width="100%"
           height="100%"
         >
-          <div>
+          <div
+            style={{
+              position:"sticky",
+              top:"0"
+            }}
+          >
             <Category
               onSelect={(value) => {
                 console.log(value)
               }}
-              defaultSelected="label1"
+              defaultSelected="all"
               categories={[
-                { label: "label1", value: "all" },
-                { label: "label2", value: "category1" },
-                { label: "label3", value: "category2" },
-                { label: "label4", value: "category3" },
-                { label: "label5", value: "category4" },
-                { label: "label6", value: "category5" },
+                { label: "all", value: "all" },
+                { label: "category1", value: "category1" },
+                { label: "category2", value: "category2" },
+                { label: "category3", value: "category3" },
+                { label: "category4", value: "category4" },
+                { label: "category5", value: "category5" },
               ]}
             />
           </div>

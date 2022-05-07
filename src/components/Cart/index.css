@@ -1,6 +1,6 @@
 .items {
   height: calc(100% - 350px);
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .p {
