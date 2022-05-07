@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { WindowDisplay, Book, Cart, Item, Category, Card } from "./components";
+import { WindowDisplay, Book, Cart, Item, Category, Card, Pagination } from "./components";
 import './App.css'
 import { getProducts } from "./requests";
 
@@ -54,26 +54,26 @@ function App() {
         className="left"
       >
         <Card
-        width="100%"
-        height="100%"
+          width="100%"
+          height="100%"
         >
-          <Category
-            onSelect={(value) => {
-              console.log(value)
-            }}
-            defaultSelected="label1"
-            categories={[
-              { label: "label1", value: "all" },
-              { label: "label2", value: "category1" },
-              { label: "label3", value: "category2" },
-              { label: "label4", value: "category3" },
-              { label: "label5", value: "category4" },
-              { label: "label6", value: "category5" },
-            ]}
-          />
-          <WindowDisplay
-            height="80%"
-          >
+          <div>
+            <Category
+              onSelect={(value) => {
+                console.log(value)
+              }}
+              defaultSelected="label1"
+              categories={[
+                { label: "label1", value: "all" },
+                { label: "label2", value: "category1" },
+                { label: "label3", value: "category2" },
+                { label: "label4", value: "category3" },
+                { label: "label5", value: "category4" },
+                { label: "label6", value: "category5" },
+              ]}
+            />
+          </div>
+          <WindowDisplay>
             {products.map(product => {
               return (
                 <Book
@@ -85,10 +85,63 @@ function App() {
                 />
               )
             })}
+            <Book
+              image={'product.image'}
+              name={"product.name"}
+              price={12}
+            />
+            <Book
+              image={'product.image'}
+              name={"product.name"}
+              price={12}
+            />
+            <Book
+              image={'product.image'}
+              name={"product.name"}
+              price={12}
+            />
+            <Book
+              image={'product.image'}
+              name={"product.name"}
+              price={12}
+            />
+            <Book
+              image={'product.image'}
+              name={"product.name"}
+              price={12}
+            />
+            <Book
+              image={'product.image'}
+              name={"product.name"}
+              price={12}
+            /><Book
+              image={'product.image'}
+              name={"product.name"}
+              price={12}
+            />
+            <Book
+              image={'product.image'}
+              name={"product.name"}
+              price={12}
+            /><Book
+              image={'product.image'}
+              name={"product.name"}
+              price={12}
+            />
+            <Book
+              image={'product.image'}
+              name={"product.name"}
+              price={12}
+            />
           </WindowDisplay>
+          <Pagination
+            defaulPage={1}
+            totalPage={20}
+            onSelect={(page) => {
+              console.log(page)
+            }}
+          />
         </Card>
-
-
       </div>
       <div
         className="right"
@@ -109,6 +162,52 @@ function App() {
               ></Item>
             )
           })}
+          <Item
+            image={"product.image"}
+            name={"product.name"}
+            amount={11}
+          ></Item>
+          <Item
+            image={"product.image"}
+            name={"product.name"}
+            amount={11}
+          ></Item><Item
+            image={"product.image"}
+            name={"product.name"}
+            amount={11}
+          ></Item><Item
+            image={"product.image"}
+            name={"product.name"}
+            amount={11}
+          ></Item><Item
+            image={"product.image"}
+            name={"product.name"}
+            amount={11}
+          ></Item><Item
+            image={"product.image"}
+            name={"product.name"}
+            amount={11}
+          ></Item><Item
+            image={"product.image"}
+            name={"product.name"}
+            amount={11}
+          ></Item><Item
+            image={"product.image"}
+            name={"product.name"}
+            amount={11}
+          ></Item><Item
+            image={"product.image"}
+            name={"product.name"}
+            amount={11}
+          ></Item><Item
+            image={"product.image"}
+            name={"product.name"}
+            amount={11}
+          ></Item><Item
+            image={"product.image"}
+            name={"product.name"}
+            amount={11}
+          ></Item>
         </Cart>
       </div>
     </div>

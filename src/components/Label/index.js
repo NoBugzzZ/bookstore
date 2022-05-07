@@ -10,8 +10,10 @@ const Label = ({
     <div
         className={`label ${selected?"label-onselected":""}`}
         onClick={() => {
-            setSelected(label)
-            handleClick(value);
+            if(!selected){
+                setSelected(label)
+                handleClick(value);
+            }
         }}
     >
         <svg t="1651824490151"

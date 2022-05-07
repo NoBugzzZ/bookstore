@@ -1,5 +1,5 @@
 .items {
-  height: calc(100% - 330px);
+  height: calc(100% - 350px);
   overflow-y: scroll;
 }
 

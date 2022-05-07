@@ -5,6 +5,7 @@ import Cart from "./Cart"
 import Item from "./Item"
 import Category from "./Category"
 import Label from "./Label"
+import Pagination from "./Pagination"
 
 export {
     WindowDisplay,
@@ -14,4 +15,5 @@ export {
     Item,
     Category,
     Label,
+    Pagination,
 }
