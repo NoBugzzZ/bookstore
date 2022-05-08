@@ -1,7 +1,10 @@
 .display-img {
-    display: block;
     height: 65%;
-    width: 100%;
+    text-align: center;
+}
+.display-img>img{
+    height: 100%;
+    width: auto;
 }
 
 .description {
@@ -39,16 +42,21 @@
     height: 30px;
     width: 70px;
     font-size: 16px;
-    background-color: rgba(0,0,255,0.5);
+    background-color: #1296db;
     border: none;
     border-radius: 3px;
     color:white;
     font-weight: bold;
     /* position: relative; */
+    transition: 0.5s;
 }
 
 .price>button>svg{
     margin-right: 3px;
     position: relative;
     top:2px;
+}
+
+.price>button:hover{
+    background-color: #117eb9;
 }

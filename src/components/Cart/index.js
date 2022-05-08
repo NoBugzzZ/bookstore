@@ -50,7 +50,7 @@ const Cart = ({
         className="p"
       >
         <span className="left-span span bold-span">Tax</span>
-        <span className="right-span span">12%</span>
+        <span className="right-span span">0%</span>
       </p>
       <p
         className="p"
@@ -62,7 +62,11 @@ const Cart = ({
         className="p"
       >
         <span className="left-span span bold-span">Sub Total</span>
-        <span className="right-span span">$215</span>
+        <span className="right-span span">
+          ${products.reduce((prev, current) => {
+            return prev + current.amount * current.product.price;
+          }, 0).toFixed(3)}
+        </span>
       </p>
       <p
         className="p"
@@ -75,9 +79,7 @@ const Cart = ({
         </span>
       </p>
       <div
-        style={{
-          marginTop: '20px'
-        }}
+        className="cancel-charge-btns"
       >
         <button
           className="cancel-btn"

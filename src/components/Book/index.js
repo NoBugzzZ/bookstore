@@ -3,11 +3,14 @@ import Card from '../Card';
 
 const Book = ({ image, name, price, handleAddBtn }) => (
     <Card>
-        <img
-            src={image}
-            alt={name}
+        <div
             className="display-img"
-        />
+        >
+            <img
+                src={image}
+                alt={name}
+            />
+        </div>
         <div
             className='description'
         >

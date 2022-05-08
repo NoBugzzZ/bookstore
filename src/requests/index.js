@@ -1,37 +1,28 @@
-const url = 'https://virtserver.swaggerhub.com/nju6/bookstore/1.0.0'
+import { API } from "../config";
 
-const products = {
-    "all": {
-        "1": [
-            {
-                "id": "string",
-                "name": "string",
-                "price": 0,
-                "image": "string"
-            }
-        ]
-    }
-}
-async function getCarts() {
-    const res = await fetch(`${url}/carts`, {
-        method: 'get',
-        mode: 'cors',
-    });
-    return res.json();
-}
+const url = API.STORE;
 
-async function postCart(cart) {
-    const res = await fetch(`${url}/carts`, {
+// async function getCarts() {
+//     const res = await fetch(`${url}/carts`, {
+//         method: 'get',
+//         mode: 'cors',
+//     });
+//     return res.json();
+// }
+
+async function postCart(product,cartId=1) {
+    const res = await fetch(`${url}/carts/${cartId}`, {
         method: 'post',
+        mode: 'cors',
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify(cart),
+        body: JSON.stringify(product),
     })
     return res.json();
 }
 
-async function getCart(id) {
+async function getCart(id=1) {
     const res = await fetch(`${url}/carts/${id}`, {
         method: 'get',
         mode: 'cors',
@@ -40,7 +31,10 @@ async function getCart(id) {
 }
 
 async function getProducts(category = "all", page = 1) {
-    const res = await fetch(`${url}/products`, {
+    const completeUrl=new URL(`${url}/products`);
+    completeUrl.searchParams.append("category",category);
+    completeUrl.searchParams.append("page",page);
+    const res = await fetch(completeUrl, {
         method: 'get',
         mode: 'cors',
     });
@@ -48,7 +42,7 @@ async function getProducts(category = "all", page = 1) {
 }
 
 export {
-    getCarts,
+    // getCarts,
     postCart,
     getCart,
     getProducts,

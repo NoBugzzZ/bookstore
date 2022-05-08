@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+## 环境
+1. node -16.14.0
+2. react -18.1.0
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 安装依赖
+```
+npm install
+```
 
-## Available Scripts
+## 运行
+```
+npm start
+```
 
-In the project directory, you can run:
+## 界面
+可以切换图书类别，可以分页。  
+点击charge会计算购物车内商品的总价格。
 
-### `npm start`
+## 配置
+### .env文件
+在此处可以修改后端api地址
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### requests/index.js文件
+可以在[swaggerhub查看接口](https://app.swaggerhub.com/apis/nju6/bookstore/1.0.0#/cart/showCartTotal)，完整文档也可以查看根目录下的api.yaml文件。
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+* [GET] /products?category=all&page=1  
+category为图书分类，page为当前页码。
+response如下，totalpages为总页码，data就是当前category以及page下的所有图书。
+```
+{
+  "totalpages": 20,
+  "data": [
+    {
+      "id": "1",
+      "name": "Java编程思想",
+      "price": 20.1,
+      "image": "https://www.linuxidc.com/upload/2014_08/140811101915661.jpg"
+    }
+  ]
+}
+```
 
-### `npm test`
+* [GET] /carts/{cartId}
+获取购物车为cartId的信息，其中cartId默认就是1，因为前端app没有切换购物车(用户)的功能。
+response如下，其中amount为图书数量。
+```
+{
+  "id": 1,
+  "amount": 5,
+  "product": {
+    "id": "1",
+    "name": "Java编程思想",
+    "price": 20.1,
+    "image": "https://www.linuxidc.com/upload/2014_08/140811101915661.jpg"
+  }
+}
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* [POST] /carts/{cartId}
+给cartId的购物车添加商品。携带的数据为application/json格式，示例数据如下。
+```
+ {
+    "id": "1",
+    "name": "Java编程思想",
+    "price": 20.1,
+    "image": "https://www.linuxidc.com/upload/2014_08/140811101915661.jpg"
+}
+```

@@ -9,8 +9,20 @@
   clear: both;
 }
 
+.item-image{
+  height: 100px;
+  width: 90px;
+  float: left;
+}
+
+.item-image>img{
+  height: 100%;
+  width: auto;
+}
+
 .item-title-wrap {
   width: calc(90% - 100px);
+  margin-left: 5px;
   margin-right: 0;
   float: left;
 }

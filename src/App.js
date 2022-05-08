@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { WindowDisplay, Book, Cart, Item, Category, Card, Pagination } from "./components";
 import './App.css'
-import { getProducts } from "./requests";
+import { getProducts, getCart,postCart } from "./requests";
 
 function App() {
 
@@ -9,44 +9,72 @@ function App() {
   const [products, setProducts] = useState([])
   const [productsToCart, setProductsToCart] = useState([])
 
+  const [totalPages, setTotalPages] = useState(1);
+
+  const [category, setCategory] = useState("all");
+  const [page, setPage] = useState(1);
+
   useEffect(() => {
-    // getCart(0).then(res => {
-    //   setItems(res?.items || []);
-    // });
-    getProducts().then(res => {
-      setProducts(res)
+    getProducts(category, page).then(({ data, totalpages }) => {
+      setProducts(data)
+      setTotalPages(totalpages);
+    })
+  }, [category, page])
+
+  useEffect(() => {
+    getCart().then(({items}) => {
+      setProductsToCart(items)
     })
   }, [])
 
-  function handleAddBtn(product) {
-    return () => {
-      setProductsToCart(prev => {
-        const findIndex = prev.findIndex(e => e.product.id === product.id);
-        const newData = [...prev];
-        if (findIndex > -1) {
-          newData.splice(findIndex, 1, {
-            amount: prev[findIndex].amount + 1,
-            product
-          })
-        } else {
-          newData.push({
-            amount: 1,
-            product
-          })
-        }
-        return newData
+  function handleAddBtn(product){
+    return ()=>{
+      postCart(product).then(res=>{
+        getCart().then(({items}) => {
+          setProductsToCart(items)
+        })
       })
     }
   }
 
   function handleCancelBtn() {
-    setProductsToCart([])
+    console.log("cancel")
   }
 
   function handleChargeBtn(charge) {
     alert(charge)
-    setProductsToCart([])
+    console.log("charge")
   }
+
+  // function handleAddBtn(product) {
+  //   return () => {
+  //     setProductsToCart(prev => {
+  //       const findIndex = prev.findIndex(e => e.product.id === product.id);
+  //       const newData = [...prev];
+  //       if (findIndex > -1) {
+  //         newData.splice(findIndex, 1, {
+  //           amount: prev[findIndex].amount + 1,
+  //           product
+  //         })
+  //       } else {
+  //         newData.push({
+  //           amount: 1,
+  //           product
+  //         })
+  //       }
+  //       return newData
+  //     })
+  //   }
+  // }
+
+  // function handleCancelBtn() {
+  //   setProductsToCart([])
+  // }
+
+  // function handleChargeBtn(charge) {
+  //   alert(charge)
+  //   setProductsToCart([])
+  // }
 
   return (
     <div className="App">
@@ -59,13 +87,13 @@ function App() {
         >
           <div
             style={{
-              position:"sticky",
-              top:"0"
+              position: "sticky",
+              top: "0"
             }}
           >
             <Category
               onSelect={(value) => {
-                console.log(value)
+                setCategory(value);
               }}
               defaultSelected="all"
               categories={[
@@ -90,60 +118,12 @@ function App() {
                 />
               )
             })}
-            <Book
-              image={'product.image'}
-              name={"product.name"}
-              price={12}
-            />
-            <Book
-              image={'product.image'}
-              name={"product.name"}
-              price={12}
-            />
-            <Book
-              image={'product.image'}
-              name={"product.name"}
-              price={12}
-            />
-            <Book
-              image={'product.image'}
-              name={"product.name"}
-              price={12}
-            />
-            <Book
-              image={'product.image'}
-              name={"product.name"}
-              price={12}
-            />
-            <Book
-              image={'product.image'}
-              name={"product.name"}
-              price={12}
-            /><Book
-              image={'product.image'}
-              name={"product.name"}
-              price={12}
-            />
-            <Book
-              image={'product.image'}
-              name={"product.name"}
-              price={12}
-            /><Book
-              image={'product.image'}
-              name={"product.name"}
-              price={12}
-            />
-            <Book
-              image={'product.image'}
-              name={"product.name"}
-              price={12}
-            />
           </WindowDisplay>
           <Pagination
             defaulPage={1}
-            totalPage={20}
+            totalPage={totalPages}
             onSelect={(page) => {
-              console.log(page)
+              setPage(page)
             }}
           />
         </Card>
@@ -167,52 +147,6 @@ function App() {
               ></Item>
             )
           })}
-          <Item
-            image={"product.image"}
-            name={"product.name"}
-            amount={11}
-          ></Item>
-          <Item
-            image={"product.image"}
-            name={"product.name"}
-            amount={11}
-          ></Item><Item
-            image={"product.image"}
-            name={"product.name"}
-            amount={11}
-          ></Item><Item
-            image={"product.image"}
-            name={"product.name"}
-            amount={11}
-          ></Item><Item
-            image={"product.image"}
-            name={"product.name"}
-            amount={11}
-          ></Item><Item
-            image={"product.image"}
-            name={"product.name"}
-            amount={11}
-          ></Item><Item
-            image={"product.image"}
-            name={"product.name"}
-            amount={11}
-          ></Item><Item
-            image={"product.image"}
-            name={"product.name"}
-            amount={11}
-          ></Item><Item
-            image={"product.image"}
-            name={"product.name"}
-            amount={11}
-          ></Item><Item
-            image={"product.image"}
-            name={"product.name"}
-            amount={11}
-          ></Item><Item
-            image={"product.image"}
-            name={"product.name"}
-            amount={11}
-          ></Item>
         </Cart>
       </div>
     </div>

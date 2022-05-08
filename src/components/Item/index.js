@@ -4,15 +4,15 @@ const Item = ({ image, name, amount }) => (
   <div
     className='item'
   >
-    <img
-      src={image}
-      alt="this is a book"
-      height="100px"
-      width="90px"
-      style={{
-        float: "left"
-      }}
-    />
+    <div
+      className='item-image'
+    >
+      <img
+        src={image}
+        alt="this is a book"
+      />
+    </div>
+
     <div
       className='item-title-wrap'
     >
