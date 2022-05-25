@@ -54,7 +54,7 @@ response如下，其中amount为图书数量。
         "id": "1",
         "name": "Java编程思想",
         "price": 20.1,
-        "image": "[sas](https://www.linuxidc.com/upload/2014_08/140811101915661.jpg)"
+        "image": "https://www.linuxidc.com/upload/2014_08/140811101915661.jpg"
       }
     }
   ]
